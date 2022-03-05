@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>new</title>
+</head>
+<body>
+
+<table width="100$%" border="1">
+    <thead>
+    <tr>
+        <th></th>
+        <th th:text="${lesson.getDate}"></th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="student : ${students}">
+        <td width="20" height="20" th:text="${student.getName}"></td>
+
+        <td width="20" height="20">
+            <th:block th:each = "grade : ${student.getGrades}">
+                <th:block th:each ="gr : ${lesson.getGrades}">
+                    <b th:text="${grade.getGrade}" th:if="${grade.getGradeId}==${gr.getGradeId}"> </b>
+                </th:block>
+            </th:block>
+        </td>
+
+
+
+
+        <td width="20" height="20">
+
+            <a th:href="@{/activities/classes-journals/teacher's-journal/newGrade?studentId={studentId}(studentId=${student.getStudentId})}">
+                <button>поставить</button>
+            </a>
+
+            <th:block th:each = "studentGrade : ${studentGrade}" th:with="test=true" th:if="${studentGrade.key}==${student}">
+                    <form th:action="@{grade-{id}(id=${studentGrade.value.getGradeId})}">
+                        <button>изменить</button>
+                    </form>
+                     <form th:method="DELETE" th:action="@{grade-{id}(id=${studentGrade.value.getGradeId})}">
+                        <input type="submit" value="Delete"/>
+                     </form>
+            </th:block>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

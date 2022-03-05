@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Activities</title>
+</head>
+<body>
+
+<div th:each="journal : ${journals}">
+    <div th:switch="${journal}">
+        <p th:case="'CLASS'"><a th:href="@{/activities/classes-journals}">Классный журнал</a></p>
+        <p th:case="'GPD'"><a th:href="@{/activities/gpd-journals}">Группа продленного дня</a></p>
+    </div>
+</div>
+
+
+</body>
+</html>

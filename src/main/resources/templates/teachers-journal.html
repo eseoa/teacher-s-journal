@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TeacherJournal</title>
+</head>
+<body>
+
+<table width="100$%" border="1">
+    <thead>
+        <tr>
+            <th></th>
+            <th th:each="lesson : ${lessonGradesMap}" th:text="${lesson.key.getDate}"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="student : ${studentsList}">
+            <td width="40" height="20" th:text="${student.getName}"></td>
+            <th:block th:each = "lessonGrade : ${lessonGradesMap}">
+                <td width="20" height="20">
+                    <th:block th:each = "grade : ${lessonGrade.value}">
+                        <th:block th:each ="gr : ${student.getGrades}">
+                            <b th:text="${grade.getGrade}" th:if="${grade.getGradeId}==${gr.getGradeId}"> </b>
+                        </th:block>
+                    </th:block>
+                </td>
+            </th:block>
+        </tr>
+        <tr>
+            <th></th>
+            <th th:each="lesson : ${lessonGradesMap}">
+                <a th:href= "@{__${#httpServletRequest.requestURI}__/lesson-{id}(id=${lesson.key.getLessonId})}">123</a>
+            </th>
+        </tr>
+    </tbody>
+</table>
+<form th:method="POST" th:action="@{/activities/classes-journals/teacher's-journal}" th:object="${lesson}">
+    <input type="submit" value="Новый урок"/>
+</form>
+
+</body>
+</html>
