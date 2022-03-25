@@ -29,7 +29,7 @@
         <tr>
             <th></th>
             <th th:each="lesson : ${lessonGradesMap}">
-                <a th:href= "@{__${#httpServletRequest.requestURI}__/lesson-{id}(id=${lesson.key.getLessonId})}">123</a>
+                <a th:href= "@{__${#httpServletRequest.requestURI}__/lesson-{id}(id=${lesson.key.getLessonId})}">Изменить</a>
             </th>
         </tr>
     </tbody>
