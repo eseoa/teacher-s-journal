@@ -142,7 +142,7 @@ public class TeacherJournalControllerV1 {
             return "redirect:/activities" ;
         }
         model.addAttribute("grade", gradeRepository.findByGradeId(id).get());
-        return "test";
+        return "grade";
     }
 
     @PatchMapping("/grade-{id}")
